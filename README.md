@@ -1,8 +1,12 @@
-# NukaCraft 1.21.1 — Recipe & Tag Repair Datapack
+# NukaCraft 1.21.1 — Recipe Repair Datapack + zh_CN Localization
 
 Community fix for **NukaCraft: Fallout mod** `1.19.10-alpha` (NeoForge 1.21.1) plus one
 **Create Deco** recipe. Repairs **74 broken recipes/tags** that spam the server log on
 every boot and silently disable game content.
+
+Also ships a **complete Simplified Chinese localization** (`localization/`) — the mod
+itself only has English and Russian. 1739/1739 strings, terminology aligned with the
+official *Fallout 76* zh-hans translation.
 
 **Measured on our dedicated server: boot ERROR lines 78 → 3, loaded recipes 10577 → 10651.**
 
@@ -69,6 +73,44 @@ never touches your world save.
 
 The remap tables and the disable-list live at the top of the script and are easy to
 extend when upstream adds new renames.
+
+## Simplified Chinese localization (简体中文汉化)
+
+NukaCraft `1.19.10-alpha` ships `en_us` + `ru_ru` only. This pack adds a full `zh_cn`
+language file covering **all 1739 strings** (items, blocks, entities, biomes, perks,
+Pip-Boy UI, S.P.E.C.I.A.L. manual, keybinds, jokes).
+
+### Install (players)
+
+Drop [`localization/nukacraft-zh_cn-resourcepack.zip`](localization/nukacraft-zh_cn-resourcepack.zip)
+into your `resourcepacks` folder and enable it. Server admins can instead set
+`resource-pack=` in `server.properties` so clients get a one-click prompt on join.
+
+### Translation quality
+
+- **413 strings** were aligned directly against the **official Fallout 76 zh-hans
+  string tables** (extracted from `SeventySix - Localization.ba2`, 254k en/zh pairs,
+  decoded + matched programmatically), including the perk descriptions and every
+  franchise term that appears in both games.
+- **1309 strings** hand-translated following conventions probed from those same
+  official tables: 哔哔小子 (Pip-Boy), 治疗针 (Stimpak), 消辐宁/抗辐宁
+  (RadAway/Rad-X), 死亡爪/狂尸鬼 (Deathclaw/Feral Ghoul), 辐射极琉矿 (Ultracite),
+  旋转机枪 (Minigun), 避难所科技 (Vault-Tec), 罗科工业 (RobCo),
+  S.P.E.C.I.A.L. kept in English per official style.
+- Machine-validated: `%%` / `%s` / `%1$s` placeholder parity, `§` color-code parity
+  (auto-repaired 46 leading/trailing code drops), full key coverage.
+- Author credit strings (`NukaTeam`, `a.a.yes`) intentionally left untranslated.
+
+### Files
+
+| File | Purpose |
+|---|---|
+| `localization/nukacraft-zh_cn-resourcepack.zip` | Ready-to-use resource pack |
+| `localization/zh_cn.json` | Raw lang file (inspect / reuse) |
+| `localization/sources/*.py` | Translation dictionaries used to build the file |
+
+To rebuild after a NukaCraft update: extract the new `en_us.json`, re-run the official-
+table alignment, then merge `sources/*.py` on top (priority: official > sources).
 
 ## Upstream status
 
